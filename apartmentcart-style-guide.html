@@ -37,12 +37,43 @@
       min-height: 100vh;
     }
 
+    /* ── TOP NAV ── */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--ac-border);
+      height: 56px; display: flex; align-items: center;
+      padding: 0 48px;
+    }
+    .top-nav-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .top-nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500;
+      color: var(--ac-navy); text-decoration: none; letter-spacing: -0.3px;
+    }
+    .top-nav-logo span { color: var(--ac-teal); }
+    .top-nav-logo-icon {
+      width: 30px; height: 30px; background: var(--ac-navy); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .top-nav-links { display: flex; gap: 4px; }
+    .top-nav-link {
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ac-slate);
+      text-decoration: none; padding: 6px 14px; border-radius: var(--radius-sm);
+      transition: background 0.15s, color 0.15s;
+    }
+    .top-nav-link:hover { background: var(--ac-mist); color: var(--ac-teal); }
+    .top-nav-link.active { background: var(--ac-mist); color: var(--ac-teal); font-weight: 500; }
+
     /* ── SIDEBAR ── */
     .sidebar {
       position: fixed;
-      top: 0; left: 0;
+      top: 56px; left: 0;
       width: 220px;
-      height: 100vh;
+      height: calc(100vh - 56px);
       background: var(--ac-white);
       border-right: 0.5px solid var(--ac-border);
       display: flex;
@@ -65,7 +96,7 @@
     .sidebar-footer { margin-top: auto; font-size: 11px; color: var(--ac-mid); }
 
     /* ── MAIN ── */
-    .main { margin-left: 220px; padding: 3rem 3.5rem; max-width: 960px; }
+    .main { margin-left: 220px; padding: 3rem 3.5rem; padding-top: calc(56px + 3rem); max-width: 960px; }
 
     /* ── PAGE HEADER ── */
     .page-header { margin-bottom: 3.5rem; padding-bottom: 2rem; border-bottom: 0.5px solid var(--ac-border); }
@@ -224,8 +255,9 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
+      .top-nav { padding: 0 20px; }
       .sidebar { display: none; }
-      .main { margin-left: 0; padding: 2rem 1.5rem; }
+      .main { margin-left: 0; padding: 2rem 1.5rem; padding-top: calc(56px + 2rem); }
       .logo-grid, .rules-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
@@ -241,6 +273,27 @@
   </style>
 </head>
 <body>
+
+  <!-- TOP NAV -->
+  <header class="top-nav">
+    <div class="top-nav-inner">
+      <a href="index.html" class="top-nav-logo">
+        <div class="top-nav-logo-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="8" width="16" height="10" rx="2" fill="#4BB8C5"/>
+            <path d="M5 8V6C5 3.79 7.24 2 10 2C12.76 2 15 3.79 15 6V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="10" cy="13" r="1.5" fill="white"/>
+          </svg>
+        </div>
+        Apartment<span>Cart</span>
+      </a>
+      <div class="top-nav-links">
+        <a href="index.html" class="top-nav-link">The Problem</a>
+        <a href="apartmentcart-competitors.html" class="top-nav-link">Competitors</a>
+        <a href="apartmentcart-style-guide.html" class="top-nav-link active">Style Guide</a>
+      </div>
+    </div>
+  </header>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
