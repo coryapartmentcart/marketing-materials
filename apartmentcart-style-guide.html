@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ApartmentCart — Brand Style Guide 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,500;1,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ac-navy:   #0D2D4A;
+      --ac-teal:   #1A7F8E;
+      --ac-sky:    #4BB8C5;
+      --ac-mist:   #D4EFF3;
+      --ac-white:  #FFFFFF;
+      --ac-slate:  #4A5E6D;
+      --ac-light:  #F4F9FA;
+      --ac-mid:    #8FA9B4;
+      --ac-warn:   #E8824A;
+      --ac-success:#2B9E6F;
+      --ac-border: rgba(26,127,142,0.15);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ac-light);
+      color: var(--ac-navy);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 220px;
+      height: 100vh;
+      background: var(--ac-white);
+      border-right: 0.5px solid var(--ac-border);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1.5rem;
+      z-index: 100;
+    }
+
+    .sidebar-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 2.5rem; }
+    .sidebar-icon { width: 34px; height: 34px; background: var(--ac-navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sidebar-wordmark { font-size: 15px; font-weight: 500; color: var(--ac-navy); letter-spacing: -0.3px; }
+    .sidebar-wordmark span { color: var(--ac-teal); }
+
+    .sidebar nav { display: flex; flex-direction: column; gap: 2px; }
+    .nav-section { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ac-mid); font-weight: 500; margin: 1rem 0 0.4rem; padding: 0 0.5rem; }
+    .nav-link { font-size: 13px; color: var(--ac-slate); padding: 6px 10px; border-radius: var(--radius-sm); text-decoration: none; transition: background 0.15s, color 0.15s; }
+    .nav-link:hover { background: var(--ac-mist); color: var(--ac-teal); }
+    .nav-link.active { background: var(--ac-mist); color: var(--ac-teal); font-weight: 500; }
+
+    .sidebar-footer { margin-top: auto; font-size: 11px; color: var(--ac-mid); }
+
+    /* ── MAIN ── */
+    .main { margin-left: 220px; padding: 3rem 3.5rem; max-width: 960px; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { margin-bottom: 3.5rem; padding-bottom: 2rem; border-bottom: 0.5px solid var(--ac-border); }
+    .page-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ac-teal); font-weight: 500; margin-bottom: 0.5rem; }
+    .page-title { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 300; color: var(--ac-navy); letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 0.75rem; }
+    .page-subtitle { font-size: 15px; color: var(--ac-slate); max-width: 540px; }
+
+    /* ── SECTIONS ── */
+    .section { margin-bottom: 4rem; scroll-margin-top: 2rem; }
+    .section-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 0.5px solid var(--ac-border); }
+    .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ac-mid); font-weight: 500; }
+    .section-anchor { font-size: 11px; color: var(--ac-mist); text-decoration: none; margin-left: auto; }
+
+    /* ── COLOR SYSTEM ── */
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
+    .swatch { border-radius: var(--radius-md); overflow: hidden; border: 0.5px solid rgba(0,0,0,0.07); background: white; }
+    .swatch-block { height: 72px; }
+    .swatch-info { padding: 10px 12px; }
+    .swatch-name { font-size: 13px; font-weight: 500; color: var(--ac-navy); }
+    .swatch-hex { font-size: 11px; color: var(--ac-mid); font-family: 'DM Mono', monospace; margin-top: 2px; }
+    .swatch-use { font-size: 10px; color: var(--ac-mid); margin-top: 3px; }
+
+    /* ── TYPOGRAPHY ── */
+    .font-pair { background: white; border-radius: var(--radius-lg); padding: 1.75rem; border: 0.5px solid var(--ac-border); margin-bottom: 1.25rem; }
+    .font-pair-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ac-mid); font-weight: 500; margin-bottom: 0.75rem; }
+    .font-sample-display { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 300; color: var(--ac-navy); letter-spacing: -0.3px; }
+    .font-sample-body-text { font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--ac-slate); margin-top: 8px; line-height: 1.65; }
+
+    .type-table { width: 100%; border-collapse: collapse; }
+    .type-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ac-mid); font-weight: 500; text-align: left; padding: 0 0 0.75rem; border-bottom: 0.5px solid var(--ac-border); }
+    .type-table td { padding: 1rem 0; border-bottom: 0.5px solid var(--ac-border); vertical-align: middle; }
+    .type-table tr:last-child td { border-bottom: none; }
+    .type-meta-name { font-size: 13px; font-weight: 500; color: var(--ac-slate); }
+    .type-meta-spec { font-size: 11px; color: var(--ac-mid); margin-top: 2px; font-family: 'DM Mono', monospace; }
+
+    .t-display  { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 300; color: var(--ac-navy); letter-spacing: -0.5px; line-height: 1.1; }
+    .t-h1       { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 300; color: var(--ac-navy); letter-spacing: -0.3px; }
+    .t-h2       { font-family: 'DM Sans', sans-serif; font-size: 18px; font-weight: 500; color: var(--ac-navy); }
+    .t-h3       { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: var(--ac-slate); }
+    .t-body     { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; color: var(--ac-slate); line-height: 1.6; }
+    .t-small    { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 400; color: var(--ac-mid); }
+    .t-label    { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ac-teal); }
+    .t-mono-ex  { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ac-slate); background: var(--ac-light); padding: 2px 8px; border-radius: 4px; }
+
+    /* ── SPACING ── */
+    .spacing-grid { display: flex; flex-direction: column; gap: 10px; }
+    .spacing-row { display: flex; align-items: center; gap: 14px; }
+    .spacing-label { font-size: 12px; color: var(--ac-slate); min-width: 100px; font-weight: 500; }
+    .spacing-bar-wrap { flex: 1; }
+    .spacing-bar { height: 22px; background: var(--ac-mist); border-radius: 4px; border: 0.5px solid var(--ac-sky); }
+    .spacing-val { font-size: 11px; color: var(--ac-mid); min-width: 120px; text-align: right; font-family: 'DM Mono', monospace; }
+
+    /* ── LOGO SECTION ── */
+    .logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .logo-card { background: white; border-radius: var(--radius-lg); border: 0.5px solid var(--ac-border); padding: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .logo-card-dark { background: var(--ac-navy); }
+    .logo-card-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ac-mid); font-weight: 500; margin-top: 0.5rem; }
+    .logo-card-dark .logo-card-label { color: rgba(255,255,255,0.35); }
+    .logo-lockup { display: flex; align-items: center; gap: 10px; }
+    .logo-icon-lg { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .logo-icon-lg.on-light { background: var(--ac-navy); }
+    .logo-icon-lg.on-dark  { background: var(--ac-teal); }
+    .logo-wordmark-lg { font-family: 'DM Sans', sans-serif; font-size: 20px; font-weight: 500; letter-spacing: -0.3px; }
+    .logo-wordmark-lg.on-light { color: var(--ac-navy); }
+    .logo-wordmark-lg.on-dark  { color: white; }
+    .logo-wordmark-lg span.on-light { color: var(--ac-teal); }
+    .logo-wordmark-lg span.on-dark  { color: var(--ac-sky); }
+
+    /* ── COMPONENTS ── */
+    .comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .comp-card { background: white; border: 0.5px solid var(--ac-border); border-radius: var(--radius-lg); padding: 1.5rem; }
+    .comp-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ac-mid); font-weight: 500; margin-bottom: 1rem; }
+
+    .btn { display: inline-flex; align-items: center; gap: 6px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; padding: 9px 18px; border: none; transition: opacity 0.15s, transform 0.1s; }
+    .btn:active { transform: scale(0.97); }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary   { background: var(--ac-navy); color: white; }
+    .btn-secondary { background: var(--ac-mist); color: var(--ac-teal); }
+    .btn-outline   { background: transparent; color: var(--ac-navy); border: 1px solid var(--ac-navy); }
+    .btn-ghost     { background: transparent; color: var(--ac-slate); }
+    .btn-danger    { background: #FEF0EA; color: var(--ac-warn); }
+    .btn-sm { font-size: 12px; padding: 6px 14px; }
+    .btn-lg { font-size: 15px; padding: 12px 24px; }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+    .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+    .badge-new    { background: var(--ac-mist); color: var(--ac-teal); }
+    .badge-avail  { background: #D5F0E6; color: #1E7A56; }
+    .badge-soon   { background: #FEF0EA; color: var(--ac-warn); }
+    .badge-off    { background: #F0F0F0; color: #888; }
+    .badge-pet    { background: #EBE9FE; color: #5B4DB3; }
+    .badge-verify { background: #D5F0E6; color: #1E7A56; }
+    .badge-demand { background: #FEF0EA; color: #C05E28; }
+    .badge-row    { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .inp-wrap { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .inp-label { font-size: 11px; font-weight: 500; color: var(--ac-slate); }
+    .inp { border: 1px solid #C8DBE0; border-radius: 8px; padding: 9px 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ac-navy); background: white; outline: none; width: 100%; transition: border-color 0.15s, box-shadow 0.15s; }
+    .inp:focus { border-color: var(--ac-teal); box-shadow: 0 0 0 3px rgba(26,127,142,0.12); }
+    .inp-icon-wrap { position: relative; }
+    .inp-icon-wrap .inp { padding-left: 34px; }
+    .inp-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--ac-mid); font-size: 15px; pointer-events: none; }
+
+    /* ── LISTING CARD ── */
+    .listing-card { background: white; border: 0.5px solid var(--ac-border); border-radius: var(--radius-lg); overflow: hidden; }
+    .listing-img  { height: 120px; background: linear-gradient(135deg, #D4EFF3 0%, #A8D8E2 100%); display: flex; align-items: center; justify-content: center; position: relative; }
+    .listing-img-label { font-family: 'Fraunces', serif; font-size: 14px; color: var(--ac-teal); font-style: italic; }
+    .listing-badge { position: absolute; top: 10px; left: 10px; background: var(--ac-navy); color: white; font-size: 10px; font-weight: 500; padding: 3px 8px; border-radius: 6px; }
+    .listing-save  { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .listing-body  { padding: 1rem 1.1rem; }
+    .listing-price { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 300; color: var(--ac-navy); }
+    .listing-price span { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--ac-mid); font-weight: 400; }
+    .listing-addr  { font-size: 13px; color: var(--ac-slate); margin: 3px 0 10px; }
+    .listing-tags  { display: flex; gap: 6px; flex-wrap: wrap; }
+    .listing-tag   { background: var(--ac-light); color: var(--ac-slate); font-size: 11px; padding: 3px 8px; border-radius: 6px; }
+
+    /* ── ICONS ── */
+    .icon-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+    .icon-item { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 68px; }
+    .icon-box  { width: 48px; height: 48px; background: var(--ac-light); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; border: 0.5px solid var(--ac-border); }
+    .icon-name { font-size: 10px; color: var(--ac-mid); text-align: center; }
+
+    /* ── MOTION ── */
+    .motion-grid { display: flex; gap: 14px; flex-wrap: wrap; }
+    .motion-demo { background: white; border-radius: var(--radius-md); padding: 1.25rem; flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; border: 0.5px solid var(--ac-border); }
+    .motion-title { font-size: 12px; font-weight: 500; color: var(--ac-slate); }
+    .motion-val   { font-size: 11px; color: var(--ac-mid); font-family: 'DM Mono', monospace; }
+    .motion-visual { height: 36px; display: flex; align-items: center; }
+
+    .pulse-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--ac-teal); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { opacity:1; transform:scale(1); } 50% { opacity:0.35; transform:scale(0.8); } }
+
+    .slide-bar { width: 36px; height: 6px; background: var(--ac-sky); border-radius: 3px; animation: slideloop 2.2s ease-in-out infinite; }
+    @keyframes slideloop { 0%, 100% { transform:translateX(0); opacity:1; } 50% { transform:translateX(56px); opacity:0.7; } }
+
+    .fade-box { width: 28px; height: 28px; background: var(--ac-teal); border-radius: 6px; animation: fadeloop 2s ease-in-out infinite; }
+    @keyframes fadeloop { 0%, 100% { opacity:1; } 50% { opacity:0.15; } }
+
+    .scale-dot { width: 20px; height: 20px; background: var(--ac-navy); border-radius: 50%; animation: scaleloop 1.8s ease-in-out infinite; }
+    @keyframes scaleloop { 0%, 100% { transform:scale(1); } 50% { transform:scale(1.55); } }
+
+    /* ── USAGE RULES ── */
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .rule-card { background: white; border-radius: var(--radius-lg); padding: 1.5rem; border: 0.5px solid var(--ac-border); }
+    .rule-card-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; margin-bottom: 1rem; }
+    .rule-item { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--ac-slate); margin-bottom: 8px; line-height: 1.5; }
+    .rule-item:last-child { margin-bottom: 0; }
+
+    /* ── TOKENS TABLE ── */
+    .tokens-table { width: 100%; border-collapse: collapse; background: white; border-radius: var(--radius-lg); overflow: hidden; border: 0.5px solid var(--ac-border); }
+    .tokens-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ac-mid); font-weight: 500; text-align: left; padding: 0.75rem 1rem; background: var(--ac-light); border-bottom: 0.5px solid var(--ac-border); }
+    .tokens-table td { padding: 0.7rem 1rem; border-bottom: 0.5px solid var(--ac-border); font-size: 13px; color: var(--ac-slate); }
+    .tokens-table tr:last-child td { border-bottom: none; }
+    .tokens-table .token-name { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ac-teal); }
+    .color-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; border: 0.5px solid rgba(0,0,0,0.1); vertical-align: middle; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 2rem 1.5rem; }
+      .logo-grid, .rules-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .comp-grid { grid-template-columns: 1fr; }
+      .color-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      .sidebar { display: none; }
+      .main { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="2" y="8" width="16" height="10" rx="2" fill="#4BB8C5"/>
+          <path d="M5 8V6C5 3.79 7.24 2 10 2C12.76 2 15 3.79 15 6V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="13" r="1.5" fill="white"/>
+        </svg>
+      </div>
+      <div class="sidebar-wordmark">Apartment<span>Cart</span></div>
+    </div>
+
+    <nav>
+      <div class="nav-section">Brand</div>
+      <a href="#logo"       class="nav-link">Logo</a>
+      <a href="#colors"     class="nav-link">Colors</a>
+      <a href="#typography" class="nav-link">Typography</a>
+
+      <div class="nav-section">Foundations</div>
+      <a href="#spacing"  class="nav-link">Spacing</a>
+      <a href="#tokens"   class="nav-link">Design tokens</a>
+      <a href="#motion"   class="nav-link">Motion</a>
+      <a href="#icons"    class="nav-link">Iconography</a>
+
+      <div class="nav-section">Components</div>
+      <a href="#buttons"  class="nav-link">Buttons</a>
+      <a href="#badges"   class="nav-link">Badges</a>
+      <a href="#inputs"   class="nav-link">Form inputs</a>
+      <a href="#listing"  class="nav-link">Listing card</a>
+
+      <div class="nav-section">Guidelines</div>
+      <a href="#usage"    class="nav-link">Usage rules</a>
+    </nav>
+
+    <div class="sidebar-footer">Brand Style Guide · 2026</div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div class="page-eyebrow">ApartmentCart</div>
+      <h1 class="page-title">Brand Style Guide</h1>
+      <p class="page-subtitle">The single source of truth for ApartmentCart's visual identity — colors, type, spacing, and components for product and marketing work.</p>
+    </div>
+
+    <!-- LOGO -->
+    <section class="section" id="logo">
+      <div class="section-header">
+        <div class="section-title">Logo</div>
+      </div>
+      <div class="logo-grid">
+        <div class="logo-card">
+          <div class="logo-lockup">
+            <div class="logo-icon-lg on-light">
+              <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+                <rect x="2" y="8" width="16" height="10" rx="2" fill="#4BB8C5"/>
+                <path d="M5 8V6C5 3.79 7.24 2 10 2C12.76 2 15 3.79 15 6V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="10" cy="13" r="1.5" fill="white"/>
+              </svg>
+            </div>
+            <div class="logo-wordmark-lg on-light">Apartment<span class="on-light">Cart</span></div>
+          </div>
+          <div class="logo-card-label">Primary — light backgrounds</div>
+        </div>
+        <div class="logo-card logo-card-dark">
+          <div class="logo-lockup">
+            <div class="logo-icon-lg on-dark">
+              <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+                <rect x="2" y="8" width="16" height="10" rx="2" fill="white"/>
+                <path d="M5 8V6C5 3.79 7.24 2 10 2C12.76 2 15 3.79 15 6V8" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="10" cy="13" r="1.5" fill="#1A7F8E"/>
+              </svg>
+            </div>
+            <div class="logo-wordmark-lg on-dark">Apartment<span class="on-dark">Cart</span></div>
+          </div>
+          <div class="logo-card-label">Reversed — dark backgrounds</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLORS -->
+    <section class="section" id="colors">
+      <div class="section-header">
+        <div class="section-title">Color System</div>
+      </div>
+      <div class="color-grid">
+        <div class="swatch">
+          <div class="swatch-block" style="background:#0D2D4A;"></div>
+          <div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0D2D4A</div><div class="swatch-use">Primary, text, CTAs</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#1A7F8E;"></div>
+          <div class="swatch-info"><div class="swatch-name">Teal</div><div class="swatch-hex">#1A7F8E</div><div class="swatch-use">Brand accent, links</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#4BB8C5;"></div>
+          <div class="swatch-info"><div class="swatch-name">Sky</div><div class="swatch-hex">#4BB8C5</div><div class="swatch-use">Highlights, icons</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#D4EFF3;"></div>
+          <div class="swatch-info"><div class="swatch-name">Mist</div><div class="swatch-hex">#D4EFF3</div><div class="swatch-use">Backgrounds, chips</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#F4F9FA;"></div>
+          <div class="swatch-info"><div class="swatch-name">Ice</div><div class="swatch-hex">#F4F9FA</div><div class="swatch-use">Page background</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#4A5E6D;"></div>
+          <div class="swatch-info"><div class="swatch-name">Slate</div><div class="swatch-hex">#4A5E6D</div><div class="swatch-use">Body text, secondary</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#8FA9B4;"></div>
+          <div class="swatch-info"><div class="swatch-name">Muted</div><div class="swatch-hex">#8FA9B4</div><div class="swatch-use">Placeholders, meta</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#E8824A;"></div>
+          <div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#E8824A</div><div class="swatch-use">Warnings, coming soon</div></div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-block" style="background:#2B9E6F;"></div>
+          <div class="swatch-info"><div class="swatch-name">Sage</div><div class="swatch-hex">#2B9E6F</div><div class="swatch-use">Success, available</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="section" id="typography">
+      <div class="section-header">
+        <div class="section-title">Typography</div>
+      </div>
+
+      <div class="font-pair">
+        <div class="font-pair-label">Display & Headlines — Fraunces (Light 300, Serif)</div>
+        <div class="font-sample-display">Find your next home.</div>
+        <div class="font-sample-body-text">Fraunces brings warmth and editorial character to headlines, making listings feel inviting — not cold or transactional. Use it for all marketing headlines, property prices, and hero copy.</div>
+      </div>
+
+      <div class="font-pair">
+        <div class="font-pair-label">UI & Body — DM Sans (Regular 400 / Medium 500, Sans-serif)</div>
+        <div style="font-family:'DM Sans',sans-serif; font-size:22px; font-weight:500; color:var(--ac-navy);">Filter by neighborhood</div>
+        <div class="font-sample-body-text">DM Sans handles all interface text, labels, and body copy. It's clean, highly legible, and engineered for screens. Never use weights above 500.</div>
+      </div>
+
+      <table class="type-table">
+        <thead>
+          <tr>
+            <th style="width:160px;">Style</th>
+            <th style="width:200px;">Specs</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="type-meta-name">Display</div><div class="type-meta-spec">Fraunces · 36px · 300</div></td>
+            <td></td>
+            <td><div class="t-display">Apartment living.</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Heading 1</div><div class="type-meta-spec">Fraunces · 26px · 300</div></td>
+            <td></td>
+            <td><div class="t-h1">Browse 4,200+ listings</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Heading 2</div><div class="type-meta-spec">DM Sans · 18px · 500</div></td>
+            <td></td>
+            <td><div class="t-h2">Filter by neighborhood</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Heading 3</div><div class="type-meta-spec">DM Sans · 15px · 500</div></td>
+            <td></td>
+            <td><div class="t-h3">Price & availability</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Body</div><div class="type-meta-spec">DM Sans · 15px · 400</div></td>
+            <td></td>
+            <td><div class="t-body">Compare verified listings, contact landlords directly, and move in with confidence.</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Small / Caption</div><div class="type-meta-spec">DM Sans · 12px · 400</div></td>
+            <td></td>
+            <td><div class="t-small">Updated 2 hours ago · 14 units available</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Eyebrow / Label</div><div class="type-meta-spec">DM Sans · 11px · 500 · UC</div></td>
+            <td></td>
+            <td><div class="t-label">Featured listings</div></td>
+          </tr>
+          <tr>
+            <td><div class="type-meta-name">Monospace</div><div class="type-meta-spec">DM Mono · 13px · 400</div></td>
+            <td></td>
+            <td><span class="t-mono-ex">--ac-teal: #1A7F8E</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SPACING -->
+    <section class="section" id="spacing">
+      <div class="section-header">
+        <div class="section-title">Spacing Scale — 4px base unit</div>
+      </div>
+      <div class="spacing-grid">
+        <div class="spacing-row"><span class="spacing-label">xs — 4px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px;"></div></div><span class="spacing-val">Icon gaps, tight inline</span></div>
+        <div class="spacing-row"><span class="spacing-label">sm — 8px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px;"></div></div><span class="spacing-val">Inline items, badge padding</span></div>
+        <div class="spacing-row"><span class="spacing-label">md — 12px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:12px;"></div></div><span class="spacing-val">Card inner padding</span></div>
+        <div class="spacing-row"><span class="spacing-label">lg — 16px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px;"></div></div><span class="spacing-val">Section item gaps</span></div>
+        <div class="spacing-row"><span class="spacing-label">xl — 24px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px;"></div></div><span class="spacing-val">Component spacing</span></div>
+        <div class="spacing-row"><span class="spacing-label">2xl — 40px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:40px;"></div></div><span class="spacing-val">Between major elements</span></div>
+        <div class="spacing-row"><span class="spacing-label">3xl — 64px</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px;"></div></div><span class="spacing-val">Page section breaks</span></div>
+      </div>
+    </section>
+
+    <!-- DESIGN TOKENS -->
+    <section class="section" id="tokens">
+      <div class="section-header">
+        <div class="section-title">Design Tokens</div>
+      </div>
+      <table class="tokens-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="token-name">--ac-navy</td><td><span class="color-dot" style="background:#0D2D4A;"></span>#0D2D4A</td><td>Primary actions, headings, logo bg</td></tr>
+          <tr><td class="token-name">--ac-teal</td><td><span class="color-dot" style="background:#1A7F8E;"></span>#1A7F8E</td><td>Brand accent, links, focus rings</td></tr>
+          <tr><td class="token-name">--ac-sky</td><td><span class="color-dot" style="background:#4BB8C5;"></span>#4BB8C5</td><td>Icon stroke, highlights</td></tr>
+          <tr><td class="token-name">--ac-mist</td><td><span class="color-dot" style="background:#D4EFF3;"></span>#D4EFF3</td><td>Chip / badge backgrounds, secondary btn</td></tr>
+          <tr><td class="token-name">--ac-light</td><td><span class="color-dot" style="background:#F4F9FA;"></span>#F4F9FA</td><td>Page background, tag fills</td></tr>
+          <tr><td class="token-name">--ac-slate</td><td><span class="color-dot" style="background:#4A5E6D;"></span>#4A5E6D</td><td>Body text, secondary labels</td></tr>
+          <tr><td class="token-name">--ac-mid</td><td><span class="color-dot" style="background:#8FA9B4;"></span>#8FA9B4</td><td>Placeholders, meta text, eyebrows</td></tr>
+          <tr><td class="token-name">--ac-warn</td><td><span class="color-dot" style="background:#E8824A;"></span>#E8824A</td><td>Warnings, "coming soon" states</td></tr>
+          <tr><td class="token-name">--ac-success</td><td><span class="color-dot" style="background:#2B9E6F;"></span>#2B9E6F</td><td>Available, verified, success states</td></tr>
+          <tr><td class="token-name">--radius-sm</td><td>6px</td><td>Buttons, small chips</td></tr>
+          <tr><td class="token-name">--radius-md</td><td>10px</td><td>Inputs, icon boxes</td></tr>
+          <tr><td class="token-name">--radius-lg</td><td>14px</td><td>Cards, modals, panels</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- MOTION -->
+    <section class="section" id="motion">
+      <div class="section-header">
+        <div class="section-title">Motion Principles</div>
+      </div>
+      <div class="motion-grid">
+        <div class="motion-demo">
+          <div class="motion-title">Pulse — presence / loading</div>
+          <div class="motion-visual"><div class="pulse-dot"></div></div>
+          <div class="motion-val">2s · ease-in-out · infinite</div>
+        </div>
+        <div class="motion-demo">
+          <div class="motion-title">Slide — navigation / progress</div>
+          <div class="motion-visual"><div class="slide-bar"></div></div>
+          <div class="motion-val">2.2s · ease-in-out · infinite</div>
+        </div>
+        <div class="motion-demo">
+          <div class="motion-title">Fade — page transitions</div>
+          <div class="motion-visual"><div class="fade-box"></div></div>
+          <div class="motion-val">2s · ease-in-out · infinite</div>
+        </div>
+        <div class="motion-demo">
+          <div class="motion-title">Scale — tap / hover feedback</div>
+          <div class="motion-visual"><div class="scale-dot"></div></div>
+          <div class="motion-val">1.8s · ease-in-out · infinite</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ICONS -->
+    <section class="section" id="icons">
+      <div class="section-header">
+        <div class="section-title">Iconography — 20px · 1.5px stroke · Rounded caps</div>
+      </div>
+      <div class="icon-grid">
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2C6.69 2 4 4.69 4 8c0 4.5 6 10 6 10s6-5.5 6-10c0-3.31-2.69-6-6-6z"/><circle cx="10" cy="8" r="2"/></svg></div><div class="icon-name">location</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="11" rx="2"/><path d="M6 7V5a4 4 0 018 0v2"/><circle cx="10" cy="12" r="1.5"/></svg></div><div class="icon-name">secure</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l7-7 7 7v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"/><path d="M8 18V12h4v6"/></svg></div><div class="icon-name">home</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 3"/></svg></div><div class="icon-name">schedule</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h12M4 10h8M4 14h10"/></svg></div><div class="icon-name">list</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg></div><div class="icon-name">search</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h14M5 5V3h10v2M5 5v12a1 1 0 001 1h8a1 1 0 001-1V5"/><path d="M8 10v4M12 10v4"/></svg></div><div class="icon-name">trash</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H6a1 1 0 00-1 1v14a1 1 0 001 1h10a1 1 0 001-1V7l-5-5z"/><path d="M12 2v5h5"/></svg></div><div class="icon-name">document</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 12v1a4 4 0 01-8 0v-1"/><path d="M10 3v9"/><path d="M7 6l3-3 3 3"/></svg></div><div class="icon-name">upload</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="14" rx="2"/><path d="M14 2v4M6 2v4M3 9h14"/></svg></div><div class="icon-name">calendar</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 18c0-3.31 3.13-6 7-6s7 2.69 7 6"/></svg></div><div class="icon-name">user</div></div>
+        <div class="icon-item"><div class="icon-box"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10h12M10 4l6 6-6 6"/></svg></div><div class="icon-name">arrow right</div></div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="section" id="buttons">
+      <div class="section-header">
+        <div class="section-title">Buttons</div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-label">Variants</div>
+          <div class="btn-row">
+            <button class="btn btn-primary">Save listing</button>
+            <button class="btn btn-secondary">Filter</button>
+            <button class="btn btn-outline">Share</button>
+            <button class="btn btn-ghost">Cancel</button>
+            <button class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">Sizes</div>
+          <div class="btn-row" style="align-items:center;">
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary">Default</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">With icon</div>
+          <div class="btn-row">
+            <button class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><path d="M10 4v12M4 10h12"/></svg>
+              Add listing
+            </button>
+            <button class="btn btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#1A7F8E" stroke-width="1.5" stroke-linecap="round"><circle cx="9" cy="9" r="6"/><path d="M15 15l3 3"/></svg>
+              Search
+            </button>
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">Full-width CTA</div>
+          <button class="btn btn-primary" style="width:100%; justify-content:center; font-size:15px; padding:12px;">View all listings</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="section" id="badges">
+      <div class="section-header">
+        <div class="section-title">Status Badges</div>
+      </div>
+      <div class="comp-card" style="max-width:100%;">
+        <div class="badge-row">
+          <span class="badge badge-new">New listing</span>
+          <span class="badge badge-avail">Available now</span>
+          <span class="badge badge-soon">Available Aug 1</span>
+          <span class="badge badge-off">Off market</span>
+          <span class="badge badge-pet">Pet friendly</span>
+          <span class="badge badge-verify">Verified</span>
+          <span class="badge badge-demand">High demand</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INPUTS -->
+    <section class="section" id="inputs">
+      <div class="section-header">
+        <div class="section-title">Form Inputs</div>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="comp-label">Text inputs</div>
+          <div class="inp-wrap">
+            <div class="inp-label">City or neighborhood</div>
+            <div class="inp-icon-wrap">
+              <span class="inp-icon">⌕</span>
+              <input class="inp" type="text" placeholder="e.g. Brooklyn, NY" />
+            </div>
+          </div>
+          <div class="inp-wrap">
+            <div class="inp-label">Max budget / month</div>
+            <input class="inp" type="text" placeholder="$2,500" />
+          </div>
+          <div class="inp-wrap">
+            <div class="inp-label">Move-in date</div>
+            <input class="inp" type="text" placeholder="mm/dd/yyyy" />
+          </div>
+        </div>
+        <div class="comp-card">
+          <div class="comp-label">States</div>
+          <div class="inp-wrap">
+            <div class="inp-label">Default</div>
+            <input class="inp" type="text" placeholder="Search listings..." />
+          </div>
+          <div class="inp-wrap">
+            <div class="inp-label">Filled</div>
+            <input class="inp" type="text" value="Williamsburg, Brooklyn" />
+          </div>
+          <div class="inp-wrap">
+            <div class="inp-label">Error</div>
+            <input class="inp" type="text" value="abc" style="border-color:#E24B4A; box-shadow:0 0 0 3px rgba(226,75,74,0.12);" />
+            <div style="font-size:11px; color:#E24B4A; margin-top:2px;">Please enter a valid zip code</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LISTING CARD -->
+    <section class="section" id="listing">
+      <div class="section-header">
+        <div class="section-title">Listing Card</div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:1.25rem; max-width:600px;">
+        <div class="listing-card">
+          <div class="listing-img">
+            <span class="listing-badge">Verified</span>
+            <div class="listing-save">
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#8FA9B4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h10a1 1 0 011 1v13l-6-4-6 4V4a1 1 0 011-1z"/></svg>
+            </div>
+            <span class="listing-img-label">Williamsburg, Brooklyn</span>
+          </div>
+          <div class="listing-body">
+            <div class="listing-price">$2,850 <span>/ mo</span></div>
+            <div class="listing-addr">148 Bedford Ave · 2 BR · 1 BA</div>
+            <div class="listing-tags">
+              <span class="listing-tag">Pet friendly</span>
+              <span class="listing-tag">Gym</span>
+              <span class="listing-tag">Laundry</span>
+            </div>
+          </div>
+        </div>
+        <div class="listing-card">
+          <div class="listing-img" style="background: linear-gradient(135deg, #EBE9FE 0%, #C9C3F5 100%);">
+            <span class="listing-badge" style="background:var(--ac-warn);">High demand</span>
+            <span class="listing-img-label" style="color:#5B4DB3;">Lower East Side</span>
+          </div>
+          <div class="listing-body">
+            <div class="listing-price">$3,400 <span>/ mo</span></div>
+            <div class="listing-addr">22 Orchard St · 1 BR · 1 BA</div>
+            <div class="listing-tags">
+              <span class="listing-tag">Doorman</span>
+              <span class="listing-tag">Rooftop</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USAGE RULES -->
+    <section class="section" id="usage">
+      <div class="section-header">
+        <div class="section-title">Usage Rules</div>
+      </div>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-card-label" style="color:var(--ac-success);">Do</div>
+          <div class="rule-item"><span style="color:var(--ac-success); font-weight:500; flex-shrink:0;">✓</span> Use Fraunces for all headlines, hero copy, and price figures</div>
+          <div class="rule-item"><span style="color:var(--ac-success); font-weight:500; flex-shrink:0;">✓</span> Lead with Navy or Teal on white backgrounds for CTAs</div>
+          <div class="rule-item"><span style="color:var(--ac-success); font-weight:500; flex-shrink:0;">✓</span> Maintain generous whitespace between sections (40–64px)</div>
+          <div class="rule-item"><span style="color:var(--ac-success); font-weight:500; flex-shrink:0;">✓</span> Use Mist and Ice for supporting UI surfaces and backgrounds</div>
+          <div class="rule-item"><span style="color:var(--ac-success); font-weight:500; flex-shrink:0;">✓</span> Keep icon stroke weight at 1.5px with rounded line caps</div>
+          <div class="rule-item"><span style="color:var(--ac-success); font-weight:500; flex-shrink:0;">✓</span> Use Sage for success/available states, Amber for warnings</div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card-label" style="color:var(--ac-warn);">Don't</div>
+          <div class="rule-item"><span style="color:var(--ac-warn); font-weight:500; flex-shrink:0;">✗</span> Mix more than 3 brand colors in a single layout</div>
+          <div class="rule-item"><span style="color:var(--ac-warn); font-weight:500; flex-shrink:0;">✗</span> Use font weights above 500 in body copy or UI text</div>
+          <div class="rule-item"><span style="color:var(--ac-warn); font-weight:500; flex-shrink:0;">✗</span> Place teal text on mist backgrounds — insufficient contrast</div>
+          <div class="rule-item"><span style="color:var(--ac-warn); font-weight:500; flex-shrink:0;">✗</span> Use Amber or Sage as primary action or brand colors</div>
+          <div class="rule-item"><span style="color:var(--ac-warn); font-weight:500; flex-shrink:0;">✗</span> Distort, recolor, or rearrange the logo lockup</div>
+          <div class="rule-item"><span style="color:var(--ac-warn); font-weight:500; flex-shrink:0;">✗</span> Use system fonts (Arial, Helvetica) as substitutes</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const links = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section[id]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>

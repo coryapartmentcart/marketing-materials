@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competitive Landscape — ApartmentCart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0c0e12;
+      --bg2:      #131620;
+      --bg3:      #1a1e28;
+      --surface:  #1e2230;
+      --border:   #2a2f3e;
+      --text:     #e8eaf0;
+      --muted:    #707585;
+      --subtle:   #3a3f52;
+      --accent:   #4f8ef7;
+      --green:    #3ecf8e;
+      --amber:    #f0a050;
+      --red:      #e05a4e;
+      --purple:   #9b7fe8;
+      --teal:     #3ecfc4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 48px;
+      background: rgba(12,14,18,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+    .logo span { color: var(--accent); }
+
+    .nav-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 140px 48px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 640px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    /* ─── LANDSCAPE OVERVIEW GRID ─── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-bottom: 1px;
+    }
+
+    .overview-cell {
+      background: var(--bg2);
+      padding: 28px 24px;
+    }
+
+    .ov-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ov-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+    .ov-val.accent { color: var(--accent); }
+    .ov-val.green { color: var(--green); }
+    .ov-val.amber { color: var(--amber); }
+    .ov-val.red { color: var(--red); }
+
+    .ov-note {
+      margin-top: 8px;
+      font-size: 0.78rem;
+      color: var(--subtle);
+      line-height: 1.5;
+    }
+
+    /* ─── SECTION ─── */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 72px 48px;
+    }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    /* ─── COMPETITOR CARDS ─── */
+    .comp-card {
+      border: 1px solid var(--border);
+      background: var(--bg2);
+      margin-bottom: 2px;
+      overflow: hidden;
+    }
+
+    .comp-header {
+      display: grid;
+      grid-template-columns: 260px 1fr auto;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comp-name-col {
+      padding: 24px 28px;
+      border-right: 1px solid var(--border);
+    }
+
+    .comp-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .comp-type-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-top: 4px;
+    }
+
+    .badge-platform { background: rgba(79,142,247,0.12); color: var(--accent); border: 1px solid rgba(79,142,247,0.25); }
+    .badge-gpo { background: rgba(62,207,142,0.12); color: var(--green); border: 1px solid rgba(62,207,142,0.25); }
+    .badge-marketplace { background: rgba(240,160,80,0.12); color: var(--amber); border: 1px solid rgba(240,160,80,0.25); }
+    .badge-cmms { background: rgba(155,127,232,0.12); color: var(--purple); border: 1px solid rgba(155,127,232,0.25); }
+
+    .comp-schtick {
+      padding: 24px 28px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .comp-schtick strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .comp-meta-col {
+      padding: 24px 28px;
+      text-align: right;
+      border-left: 1px solid var(--border);
+      min-width: 180px;
+    }
+
+    .comp-price {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--green);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .comp-size {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .comp-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .comp-col {
+      background: var(--bg2);
+      padding: 24px 28px;
+    }
+
+    .comp-col-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .strength-list, .weakness-list, .gap-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .strength-list li, .weakness-list li, .gap-list li {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .strength-list li::before { content: '+'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
+    .weakness-list li::before { content: '−'; position: absolute; left: 0; color: var(--red); font-weight: 600; }
+    .gap-list li::before { content: '→'; position: absolute; left: 0; color: var(--amber); font-weight: 600; }
+
+    /* ─── COMPETITIVE MATRIX ─── */
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .matrix-table th {
+      padding: 14px 18px;
+      text-align: left;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .matrix-table th:first-child { width: 180px; }
+
+    .matrix-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: middle;
+    }
+
+    .matrix-table td:first-child {
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      background: var(--bg3);
+      white-space: nowrap;
+    }
+
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table td:last-child { border-right: none; }
+
+    .matrix-table tr.highlight-row td:first-child {
+      color: var(--accent);
+    }
+    .matrix-table tr.highlight-row td {
+      background: rgba(79,142,247,0.04);
+    }
+
+    .dot-yes { color: var(--green); font-size: 1.1rem; }
+    .dot-no { color: var(--red); font-size: 1.1rem; }
+    .dot-partial { color: var(--amber); font-size: 1.1rem; }
+
+    /* ─── THREAT LEVEL ─── */
+    .threat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .threat-cell {
+      background: var(--bg2);
+      padding: 28px 24px;
+    }
+
+    .threat-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .threat-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .threat-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .threat-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      width: 0;
+    }
+
+    .threat-fill.low { background: var(--green); }
+    .threat-fill.medium { background: var(--amber); }
+    .threat-fill.high { background: var(--red); }
+
+    .threat-pct {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.7rem;
+      min-width: 30px;
+      text-align: right;
+    }
+    .threat-pct.low { color: var(--green); }
+    .threat-pct.medium { color: var(--amber); }
+    .threat-pct.high { color: var(--red); }
+
+    .threat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .threat-label.low { color: var(--green); }
+    .threat-label.medium { color: var(--amber); }
+    .threat-label.high { color: var(--red); }
+
+    .threat-reason {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── MOAT BOX ─── */
+    .moat-box {
+      border: 1px solid rgba(79,142,247,0.3);
+      background: rgba(79,142,247,0.04);
+      padding: 40px 48px;
+      margin-top: 2px;
+    }
+
+    .moat-header {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .moat-body {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 820px;
+      margin-bottom: 28px;
+    }
+
+    .moat-points {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .moat-point {
+      border-left: 2px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    .moat-point-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .moat-point-body {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 40px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 100%;
+    }
+
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .footer-logo span { color: var(--accent); }
+
+    .footer-note {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--subtle);
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 960px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 120px 20px 60px; }
+      .section { padding: 48px 20px; }
+      .overview-grid { grid-template-columns: 1fr 1fr; }
+      .comp-header { grid-template-columns: 1fr; }
+      .comp-name-col { border-right: none; border-bottom: 1px solid var(--border); }
+      .comp-meta-col { border-left: none; border-top: 1px solid var(--border); text-align: left; }
+      .comp-body { grid-template-columns: 1fr; }
+      .threat-grid { grid-template-columns: 1fr 1fr; }
+      .moat-points { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; }
+      .footer-note { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Apartment<span>Cart</span></div>
+  <div class="nav-badge">COMPETITIVE LANDSCAPE · 2025</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">// internal research</div>
+  <h1>Who We're Up Against</h1>
+  <p class="hero-sub">
+    ApartmentCart sits at a unique intersection — digital asset catalogs tied directly to procurement — that no single competitor fully occupies. Here's a clear-eyed view of every relevant player, what they're selling, and where we beat them.
+  </p>
+
+  <div class="overview-grid fade-in">
+    <div class="overview-cell">
+      <div class="ov-label">Direct Competitors</div>
+      <div class="ov-val accent">5</div>
+      <div class="ov-note">Varying degrees of overlap across procurement, catalog, and maintenance workflows</div>
+    </div>
+    <div class="overview-cell">
+      <div class="ov-label">Market Leader</div>
+      <div class="ov-val">Yardi</div>
+      <div class="ov-note">~40%+ of professionally managed units run on Yardi Voyager. Procurement is an add-on module, not a core product.</div>
+    </div>
+    <div class="overview-cell">
+      <div class="ov-label">Biggest GPO</div>
+      <div class="ov-val">OMNIA</div>
+      <div class="ov-note">$35B+ in annual purchasing volume. Acquired the two leading multifamily GPOs in 2021.</div>
+    </div>
+    <div class="overview-cell">
+      <div class="ov-label">Whitespace We Own</div>
+      <div class="ov-val green">100%</div>
+      <div class="ov-note">No competitor connects digital asset catalogs per-property to live negotiated pricing for maintenance staff.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- COMPETITOR CARDS -->
+<div class="section">
+  <div class="section-label">// competitor profiles</div>
+  <h2>The Competitive Set</h2>
+  <p class="section-desc">We've identified five categories of competitors — from the $35B GPO behemoth to lean proptech startups. Each has a different angle of attack on the same underlying problem.</p>
+
+  <!-- YARDI -->
+  <div class="comp-card fade-in">
+    <div class="comp-header">
+      <div class="comp-name-col">
+        <div class="comp-name">Yardi Procure to Pay</div>
+        <div><span class="comp-type-badge badge-platform">Enterprise Platform</span></div>
+      </div>
+      <div class="comp-schtick">
+        <strong>The schtick:</strong> Yardi is the dominant property management operating system — think of them as the Salesforce of multifamily. Their Procure to Pay suite (PayScan, Bill Pay, Marketplace, VendorCafe) sits inside Voyager and handles invoice processing, vendor credentialing, and MRO purchasing from a catalog of <strong>2M+ products</strong>. The pitch is "do everything in one system." Procurement is a module, not a core mission.
+      </div>
+      <div class="comp-meta-col">
+        <div class="comp-price">Custom enterprise pricing<br/>Module add-on to Voyager<br/>~$1–3/unit/month est.</div>
+        <div class="comp-size">Private · Santa Barbara, CA<br/>~7,000 employees<br/>Dominant market position</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-col">
+        <div class="comp-col-label">Strengths</div>
+        <ul class="strength-list">
+          <li>Already in 40%+ of professionally managed portfolios</li>
+          <li>Deep ERP integration — procurement ties to AP, GL, budgets</li>
+          <li>2M+ MRO products in online catalog</li>
+          <li>Trusted brand with decades of relationships</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Weaknesses</div>
+        <ul class="weakness-list">
+          <li>No per-property asset catalog (what's installed at Unit 4B?)</li>
+          <li>Maintenance staff UX is notoriously poor — technicians don't use it</li>
+          <li>Module requires Voyager — locked ecosystem</li>
+          <li>Implementation takes months and costs tens of thousands</li>
+          <li>Designed for finance/accounting teams, not maintenance teams</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Gap for ApartmentCart</div>
+        <ul class="gap-list">
+          <li>Yardi Marketplace doesn't know what's installed at each unit — our catalog does</li>
+          <li>Maintenance staff bypass Yardi and buy at Home Depot anyway</li>
+          <li>We can integrate with Yardi as a layer they're missing, not fight them head-on</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAIVEN -->
+  <div class="comp-card fade-in">
+    <div class="comp-header">
+      <div class="comp-name-col">
+        <div class="comp-name">Raiven</div>
+        <div><span class="comp-type-badge badge-marketplace">AI Marketplace</span></div>
+      </div>
+      <div class="comp-schtick">
+        <strong>The schtick:</strong> Raiven is the closest analog to what we're building — a procurement platform purpose-built for multifamily and HVAC contractors. Their core pitch is <strong>pre-negotiated discounts of 7–25%</strong> from big-name suppliers (Ferguson, HD Supply, Grainger, Graybar) through a partnership with Avendra. They offer an AI-powered marketplace and purchase order automation. Raiven is supplier-centric: they aggregate vendor access and let you buy through one portal.
+      </div>
+      <div class="comp-meta-col">
+        <div class="comp-price">Free to join<br/>Revenue via supplier<br/>commission/markup</div>
+        <div class="comp-size">Private · Los Angeles, CA<br/>Spin-off from Qmerit<br/>Small team (~50 est.)</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-col">
+        <div class="comp-col-label">Strengths</div>
+        <ul class="strength-list">
+          <li>Pre-negotiated supplier network already built out</li>
+          <li>AI-powered price comparison and sourcing</li>
+          <li>Avendra partnership gives access to $13B in purchasing power</li>
+          <li>Multifamily-specific — not a generic B2B procurement tool</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Weaknesses</div>
+        <ul class="weakness-list">
+          <li>No per-property asset catalog — doesn't know what's installed</li>
+          <li>Still requires staff to know what they need before ordering</li>
+          <li>Revenue model depends on supplier commissions = potential pricing conflict</li>
+          <li>Small LinkedIn following (23 followers on multifamily page) — minimal market presence</li>
+          <li>No plan set digitization; doesn't solve the identification problem</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Gap for ApartmentCart</div>
+        <ul class="gap-list">
+          <li>Raiven solves "where to buy" — we solve "what to buy and at what approved price"</li>
+          <li>Our asset catalog is the upstream step that Raiven assumes is already solved</li>
+          <li>Potential partnership opportunity: they bring supplier network, we bring catalog layer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- OMNIA PARTNERS -->
+  <div class="comp-card fade-in">
+    <div class="comp-header">
+      <div class="comp-name-col">
+        <div class="comp-name">OMNIA Partners</div>
+        <div><span class="comp-type-badge badge-gpo">Group Purchasing Org</span></div>
+      </div>
+      <div class="comp-schtick">
+        <strong>The schtick:</strong> OMNIA is the <strong>largest GPO in the U.S.</strong> — $35B+ in annual purchasing volume, 500,000+ members. They entered multifamily in 2021 by acquiring both leading multifamily GPOs (PAS Purchasing Solutions and Buyers Access), instantly becoming the dominant group purchasing organization in the space. Their pitch is purely price leverage: join our co-op, get access to pre-negotiated contracts, save money through scale. Backed by CapitalG (Google's growth fund) as of 2025.
+      </div>
+      <div class="comp-meta-col">
+        <div class="comp-price">Free membership<br/>Funded via supplier<br/>admin fees (% of spend)</div>
+        <div class="comp-size">Private · Brentwood, TN<br/>$35B+ purchasing volume<br/>500,000+ members</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-col">
+        <div class="comp-col-label">Strengths</div>
+        <ul class="strength-list">
+          <li>Dominant scale — largest GPO in the country, period</li>
+          <li>Free to join with immediate access to pre-negotiated contracts</li>
+          <li>SpendPath analytics tool for spend visibility</li>
+          <li>CapitalG backing signals serious investment in tech transformation</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Weaknesses</div>
+        <ul class="weakness-list">
+          <li>Completely passive — no software connecting contracts to the field</li>
+          <li>No asset catalog — no way to know what's installed at each property</li>
+          <li>No purchase order workflow for maintenance teams</li>
+          <li>Contracts exist on paper; field staff still buy where they want</li>
+          <li>Broad multi-industry focus — multifamily is one of 35+ verticals</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Gap for ApartmentCart</div>
+        <ul class="gap-list">
+          <li>OMNIA negotiates the deals but can't enforce them at the property level</li>
+          <li>We are the software layer that OMNIA contracts need to actually work</li>
+          <li>ApartmentCart could white-label or integrate OMNIA contracts into our catalog</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVENDRA -->
+  <div class="comp-card fade-in">
+    <div class="comp-header">
+      <div class="comp-name-col">
+        <div class="comp-name">Avendra / Aramark</div>
+        <div><span class="comp-type-badge badge-gpo">Group Purchasing Org</span></div>
+      </div>
+      <div class="comp-schtick">
+        <strong>The schtick:</strong> Avendra is the hospitality-born procurement services company — originally founded by Marriott, Hyatt, and IHG — acquired by Aramark for <strong>$1.35 billion in 2017</strong>. They manage <strong>$13B in purchasing power</strong> and serve 16,500+ customers across hospitality, senior living, and multifamily. Their multifamily play is an extension of their hotel procurement model: manage supplier relationships, run price audits, provide commodity reports, and let operators benefit from aggregated scale. Raiven actually has a partnership with Avendra to leverage their contracts.
+      </div>
+      <div class="comp-meta-col">
+        <div class="comp-price">Service fee model<br/>% of managed spend<br/>Custom contracts</div>
+        <div class="comp-size">Aramark subsidiary<br/>Rockville, MD<br/>$13B purchasing power</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-col">
+        <div class="comp-col-label">Strengths</div>
+        <ul class="strength-list">
+          <li>Enormous purchasing leverage — $13B is category-defining scale</li>
+          <li>800+ supplier relationships already negotiated</li>
+          <li>Price audit and performance monitoring services</li>
+          <li>Aramark backing provides financial stability and cross-industry reach</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Weaknesses</div>
+        <ul class="weakness-list">
+          <li>Hospitality-first culture — multifamily is secondary</li>
+          <li>No software product — purely a services/consulting model</li>
+          <li>No visibility into whether field staff are actually using the contracts</li>
+          <li>High-touch, relationship-driven model doesn't scale to SMB operators</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Gap for ApartmentCart</div>
+        <ul class="gap-list">
+          <li>Avendra's contracts go unused at the property level — we fix that</li>
+          <li>Their hospitality DNA doesn't translate to maintenance-first workflows</li>
+          <li>We are software; they are services — highly complementary, not substitutable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- REALPAGE -->
+  <div class="comp-card fade-in">
+    <div class="comp-header">
+      <div class="comp-name-col">
+        <div class="comp-name">RealPage</div>
+        <div><span class="comp-type-badge badge-platform">Enterprise Platform</span></div>
+      </div>
+      <div class="comp-schtick">
+        <strong>The schtick:</strong> RealPage is Yardi's main enterprise software rival, managing <strong>24M+ rental units</strong> globally. They offer end-to-end property management and explicitly market "end-to-end procurement automation with vendor credentialing and cost controls" — acknowledging it as a differentiator vs. competitors with only "check the box" functionality. Their maintenance module includes AI-powered work order instructions, mobile-first workflows, real-time asset tracking, and photo capture. Acquired by Thoma Bravo in 2021 for $10.2B.
+      </div>
+      <div class="comp-meta-col">
+        <div class="comp-price">Custom enterprise<br/>~$1.50–$3/unit/month<br/>for core features est.</div>
+        <div class="comp-size">Thoma Bravo · 24M units<br/>Richardson, TX<br/>~8,000+ employees</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-col">
+        <div class="comp-col-label">Strengths</div>
+        <ul class="strength-list">
+          <li>Massive install base — 24M units is the largest in the industry</li>
+          <li>Most advanced maintenance module among PMS platforms</li>
+          <li>AI-powered work order assistance and asset tracking</li>
+          <li>End-to-end procurement automation with vendor credentialing</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Weaknesses</div>
+        <ul class="weakness-list">
+          <li>No per-property asset catalog linking installed equipment to SKUs</li>
+          <li>Procurement is still workflow automation, not cost-savings optimization</li>
+          <li>Controversial pricing practices under DOJ antitrust scrutiny (2024)</li>
+          <li>Complex, expensive enterprise system — small/mid operators underserved</li>
+          <li>Maintenance staff UX still secondary to back-office finance tools</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Gap for ApartmentCart</div>
+        <ul class="gap-list">
+          <li>Even their most advanced module doesn't solve: "what exact part is installed at Unit 4B?"</li>
+          <li>Their asset tracking is post-hoc (after work orders) — ours is pre-emptive (catalog first)</li>
+          <li>DOJ scrutiny creates a trust vacuum for RealPage customers seeking alternatives</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEXA -->
+  <div class="comp-card fade-in">
+    <div class="comp-header">
+      <div class="comp-name-col">
+        <div class="comp-name">Fexa CMMS</div>
+        <div><span class="comp-type-badge badge-cmms">Facilities CMMS</span></div>
+      </div>
+      <div class="comp-schtick">
+        <strong>The schtick:</strong> Fexa is a flexible, AI-forward CMMS (Computerized Maintenance Management System) built for multi-site retail and commercial brands — think Eyemart Express, restaurant chains, and similar. They track assets, work orders, vendor compliance, budgets, and capital planning in one platform. Their differentiator is "flexibility" — configurable workflows that adapt to your business rather than forcing you into a rigid structure. Not multifamily-native, but their asset management depth is the most relevant overlap.
+      </div>
+      <div class="comp-meta-col">
+        <div class="comp-price">3 tiers: Basic / Essential<br/>/ Plus — custom pricing<br/>Quote-based only</div>
+        <div class="comp-size">Private · Multi-site retail<br/>Not multifamily-native<br/>Moderate install base</div>
+      </div>
+    </div>
+    <div class="comp-body">
+      <div class="comp-col">
+        <div class="comp-col-label">Strengths</div>
+        <ul class="strength-list">
+          <li>Most configurable CMMS in the market — highly adaptable</li>
+          <li>Strong asset lifecycle management and TCO tracking</li>
+          <li>Budget-to-work-order integration is best-in-class</li>
+          <li>No vendor transaction fees (unlike many CMMS platforms)</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Weaknesses</div>
+        <ul class="weakness-list">
+          <li>Not built for multifamily — no apartment-specific workflows</li>
+          <li>No supplier procurement or catalog of negotiated pricing</li>
+          <li>No plan set digitization or per-unit asset catalogs</li>
+          <li>Asset tracking is reactive (maintenance history) — not a purchasing tool</li>
+          <li>No mobile app — browser-only limits field staff usability</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <div class="comp-col-label">Gap for ApartmentCart</div>
+        <ul class="gap-list">
+          <li>Fexa tracks what happened to an asset — we tell you what it is and where to buy it</li>
+          <li>Their retail DNA doesn't fit apartment maintenance workflows or plan sets</li>
+          <li>If multifamily operators want CMMS-like features, ApartmentCart should get there first</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- FEATURE MATRIX -->
+<div class="section">
+  <div class="section-label">// feature comparison</div>
+  <h2>Head-to-Head Matrix</h2>
+  <p class="section-desc">The critical capabilities for solving the procurement leakage problem — mapped across every competitor.</p>
+
+  <div class="matrix-wrap fade-in">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th>ApartmentCart</th>
+          <th>Yardi P2P</th>
+          <th>Raiven</th>
+          <th>OMNIA Partners</th>
+          <th>Avendra</th>
+          <th>RealPage</th>
+          <th>Fexa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>Per-property digital asset catalog</td>
+          <td><span class="dot-yes">●</span> Core product</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-partial">●</span> Partial</td>
+          <td><span class="dot-partial">●</span> Generic assets</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Digitizes paper plan sets</td>
+          <td><span class="dot-yes">●</span> Core product</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+        </tr>
+        <tr>
+          <td>Pre-negotiated pricing access</td>
+          <td><span class="dot-yes">●</span> Via operator's contracts</td>
+          <td><span class="dot-partial">●</span> Catalog pricing</td>
+          <td><span class="dot-yes">●</span> 7–25% discounts</td>
+          <td><span class="dot-yes">●</span> Co-op contracts</td>
+          <td><span class="dot-yes">●</span> $13B purchasing power</td>
+          <td><span class="dot-partial">●</span> Vendor credentialing</td>
+          <td><span class="dot-no">●</span> No</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Savings visibility / contract compliance</td>
+          <td><span class="dot-yes">●</span> Core product</td>
+          <td><span class="dot-partial">●</span> AP reporting only</td>
+          <td><span class="dot-partial">●</span> Spend analytics</td>
+          <td><span class="dot-partial">●</span> SpendPath tool</td>
+          <td><span class="dot-partial">●</span> Price audits (manual)</td>
+          <td><span class="dot-partial">●</span> Spend reporting</td>
+          <td><span class="dot-partial">●</span> Budget tracking</td>
+        </tr>
+        <tr>
+          <td>Maintenance staff workflow / PO creation</td>
+          <td><span class="dot-yes">●</span> Core product</td>
+          <td><span class="dot-partial">●</span> Complex UX</td>
+          <td><span class="dot-yes">●</span> Basic PO creation</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-yes">●</span> AI-assisted work orders</td>
+          <td><span class="dot-yes">●</span> Work order mgmt</td>
+        </tr>
+        <tr>
+          <td>Multifamily-native design</td>
+          <td><span class="dot-yes">●</span> Purpose-built</td>
+          <td><span class="dot-yes">●</span> Multifamily core</td>
+          <td><span class="dot-yes">●</span> Multifamily focus</td>
+          <td><span class="dot-yes">●</span> Multifamily GPO</td>
+          <td><span class="dot-partial">●</span> Hotel-first</td>
+          <td><span class="dot-yes">●</span> Multifamily core</td>
+          <td><span class="dot-no">●</span> Retail/commercial</td>
+        </tr>
+        <tr>
+          <td>Procurement team catalog management</td>
+          <td><span class="dot-yes">●</span> Core product</td>
+          <td><span class="dot-partial">●</span> Via Voyager admin</td>
+          <td><span class="dot-partial">●</span> Supplier mgmt</td>
+          <td><span class="dot-no">●</span> No</td>
+          <td><span class="dot-partial">●</span> Managed services</td>
+          <td><span class="dot-partial">●</span> Vendor credentialing</td>
+          <td><span class="dot-partial">●</span> Vendor mgmt</td>
+        </tr>
+        <tr>
+          <td>Mid-market / SMB accessible pricing</td>
+          <td><span class="dot-yes">●</span> SaaS model</td>
+          <td><span class="dot-no">●</span> Enterprise only</td>
+          <td><span class="dot-yes">●</span> Free to join</td>
+          <td><span class="dot-yes">●</span> Free to join</td>
+          <td><span class="dot-no">●</span> Enterprise focus</td>
+          <td><span class="dot-no">●</span> Enterprise only</td>
+          <td><span class="dot-partial">●</span> Mid-market</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- THREAT LEVEL -->
+<div class="section">
+  <div class="section-label">// threat assessment</div>
+  <h2>Competitive Threat Level</h2>
+  <p class="section-desc">How dangerous is each competitor to ApartmentCart's growth and market position in the next 24 months?</p>
+
+  <div class="threat-grid fade-in">
+    <div class="threat-cell">
+      <div class="threat-name">Yardi Procure to Pay</div>
+      <div class="threat-label medium">Medium Threat</div>
+      <div class="threat-bar-wrap">
+        <div class="threat-bar"><div class="threat-fill medium" data-width="55%" style="width: 55%;"></div></div>
+        <div class="threat-pct medium">55%</div>
+      </div>
+      <div class="threat-reason">Dominant install base means many of our prospects are already Yardi customers — but their P2P module is an add-on most haven't purchased. We can coexist as a purpose-built layer. Danger rises if Yardi adds a per-unit asset catalog natively.</div>
+    </div>
+    <div class="threat-cell">
+      <div class="threat-name">RealPage</div>
+      <div class="threat-label medium">Medium Threat</div>
+      <div class="threat-bar-wrap">
+        <div class="threat-bar"><div class="threat-fill medium" data-width="50%" style="width: 50%;"></div></div>
+        <div class="threat-pct medium">50%</div>
+      </div>
+      <div class="threat-reason">Their maintenance module is the most advanced in PMS — but it's still not solving our core problem. DOJ antitrust scrutiny is actively pushing operators away from RealPage, creating a window for alternatives. Less dangerous than Yardi due to enterprise-only positioning.</div>
+    </div>
+    <div class="threat-cell">
+      <div class="threat-name">Raiven</div>
+      <div class="threat-label high">High Threat</div>
+      <div class="threat-bar-wrap">
+        <div class="threat-bar"><div class="threat-fill high" data-width="70%" style="width: 70%;"></div></div>
+        <div class="threat-pct high">70%</div>
+      </div>
+      <div class="threat-reason">Closest product overlap and most likely to add a catalog layer. They have the supplier network, the multifamily relationships, and the AI-first posture. If they add per-property asset management, they become a direct threat. Most important to move faster than.</div>
+    </div>
+    <div class="threat-cell">
+      <div class="threat-name">OMNIA Partners</div>
+      <div class="threat-label low">Low Threat</div>
+      <div class="threat-bar-wrap">
+        <div class="threat-bar"><div class="threat-fill low" data-width="25%" style="width: 25%;"></div></div>
+        <div class="threat-pct low">25%</div>
+      </div>
+      <div class="threat-reason">OMNIA is a GPO, not a software company. CapitalG investment signals tech transformation ambition, but their model is contracts-first. They are more likely to become a supplier partner than a competitor. We can integrate their contracts as a value-add.</div>
+    </div>
+    <div class="threat-cell">
+      <div class="threat-name">Avendra / Aramark</div>
+      <div class="threat-label low">Low Threat</div>
+      <div class="threat-bar-wrap">
+        <div class="threat-bar"><div class="threat-fill low" data-width="20%" style="width: 20%;"></div></div>
+        <div class="threat-pct low">20%</div>
+      </div>
+      <div class="threat-reason">Pure services model, hospitality-native, and acquired by a food services company. They have no incentive or capability to build per-property software. Their purchasing power makes them a potential integration partner — not a competitor.</div>
+    </div>
+    <div class="threat-cell">
+      <div class="threat-name">Fexa CMMS</div>
+      <div class="threat-label low">Low Threat</div>
+      <div class="threat-bar-wrap">
+        <div class="threat-bar"><div class="threat-fill low" data-width="20%" style="width: 20%;"></div></div>
+        <div class="threat-pct low">20%</div>
+      </div>
+      <div class="threat-reason">Retail/commercial DNA means they would need to rebuild from scratch for multifamily. No procurement layer and no plan set understanding. A reminder that we need to own the CMMS-adjacent space in multifamily before someone like Fexa pivots into it.</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- MOAT -->
+<div class="section">
+  <div class="moat-box fade-in">
+    <div class="moat-header">Our Defensible Position</div>
+    <div class="moat-body">
+      Every competitor either solves the purchasing side (GPOs, Raiven) or the operations side (Yardi, RealPage, Fexa) — but nobody connects them through a <strong>per-property, per-unit asset catalog</strong>. That catalog is the keystone: procurement teams build it, maintenance teams use it, and owners finally see whether negotiated pricing is actually flowing to the property level. This is the gap that creates our moat.
+    </div>
+    <div class="moat-points">
+      <div class="moat-point">
+        <div class="moat-point-title">Data Network Effect</div>
+        <div class="moat-point-body">Every property onboarded adds asset data that improves catalog quality and makes the platform more valuable to procurement teams building templates across their portfolio.</div>
+      </div>
+      <div class="moat-point">
+        <div class="moat-point-title">Workflow Stickiness</div>
+        <div class="moat-point-body">Once procurement teams build their catalogs and maintenance staff use them daily, switching cost is extremely high — the data is proprietary and rebuilding the workflow is painful.</div>
+      </div>
+      <div class="moat-point">
+        <div class="moat-point-title">Integration Layer</div>
+        <div class="moat-point-body">We can integrate with Yardi, RealPage, OMNIA, and Avendra — becoming the connective tissue they're all missing — rather than competing directly with platforms that have 10-year head starts.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Apartment<span>Cart</span></div>
+  <div class="footer-note">
+    Research compiled March 2026 · Sources: Company websites, Crunchbase,<br/>
+    SEC filings, NAA benchmarking data, G2/Capterra reviews, LinkedIn profiles.<br/>
+    Pricing estimates are approximations; most competitors use custom enterprise pricing.
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
