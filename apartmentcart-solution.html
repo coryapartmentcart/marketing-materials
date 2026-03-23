@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Solution — ApartmentCart</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Fraunces:ital,wght@0,300;0,500;1,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ac-navy:    #0D2D4A;
+      --ac-teal:    #1A7F8E;
+      --ac-sky:     #4BB8C5;
+      --ac-mist:    #D4EFF3;
+      --ac-white:   #FFFFFF;
+      --ac-slate:   #4A5E6D;
+      --ac-light:   #F4F9FA;
+      --ac-mid:     #8FA9B4;
+      --ac-warn:    #E8824A;
+      --ac-success: #2B9E6F;
+      --ac-border:  rgba(26,127,142,0.15);
+      --radius-sm:  6px;
+      --radius-md:  10px;
+      --radius-lg:  14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--ac-light);
+      color: var(--ac-navy);
+      font-size: 17px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--ac-border);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 48px;
+    }
+
+    .nav-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500;
+      color: var(--ac-navy); text-decoration: none; letter-spacing: -0.3px;
+    }
+    .nav-logo span { color: var(--ac-teal); }
+
+    .nav-logo-icon {
+      width: 30px; height: 30px; background: var(--ac-navy); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+
+    .nav-links { display: flex; gap: 4px; }
+
+    .nav-link {
+      font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--ac-slate);
+      text-decoration: none; padding: 6px 14px; border-radius: var(--radius-sm);
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav-link:hover { background: var(--ac-mist); color: var(--ac-teal); }
+    .nav-link.active { background: var(--ac-mist); color: var(--ac-teal); font-weight: 500; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 56px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 48px;
+      border-right: 1px solid var(--ac-border);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ac-teal);
+      margin-bottom: 28px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--ac-teal);
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ac-navy);
+      margin-bottom: 28px;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--ac-teal);
+    }
+
+    .hero-body {
+      font-size: 1.05rem;
+      color: var(--ac-slate);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px;
+      background: var(--ac-navy);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(26,127,142,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .stat-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .stat-item {
+      padding: 36px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      opacity: 0;
+      transform: translateX(30px);
+      animation: slideIn 0.6s forwards;
+    }
+    .stat-item:last-child { border-bottom: none; }
+    .stat-item:nth-child(1) { animation-delay: 0.2s; }
+    .stat-item:nth-child(2) { animation-delay: 0.4s; }
+    .stat-item:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes slideIn {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--ac-white);
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .stat-num span { color: var(--ac-sky); }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    /* ─── SECTION SCAFFOLDING ─── */
+    section {
+      padding: 100px 48px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      margin-bottom: 72px;
+      align-items: start;
+    }
+
+    .section-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ac-mid);
+      padding-top: 6px;
+    }
+
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ac-navy);
+    }
+    h2 em { font-style: italic; color: var(--ac-teal); }
+
+    .section-intro {
+      font-size: 1.05rem;
+      color: var(--ac-slate);
+      line-height: 1.8;
+      margin-top: 20px;
+    }
+
+    /* ─── WHAT IT IS — PLATFORM DIAGRAM ─── */
+    .platform-diagram {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: stretch;
+      border: 1px solid var(--ac-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background: var(--ac-white);
+    }
+
+    .platform-side {
+      padding: 44px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .platform-center {
+      padding: 44px 40px;
+      background: var(--ac-navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      min-width: 260px;
+    }
+
+    .platform-center::before,
+    .platform-center::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 2px;
+      background: var(--ac-sky);
+    }
+    .platform-center::before { left: -14px; }
+    .platform-center::after { right: -14px; }
+
+    .platform-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+    }
+
+    .platform-role {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ac-teal);
+      margin-bottom: 10px;
+    }
+
+    .platform-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: var(--ac-navy);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .platform-center .platform-title {
+      color: var(--ac-white);
+    }
+
+    .platform-center .platform-role {
+      color: var(--ac-sky);
+    }
+
+    .platform-desc {
+      font-size: 0.88rem;
+      color: var(--ac-mid);
+      line-height: 1.7;
+    }
+
+    .platform-center .platform-desc {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .platform-center-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--ac-white);
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .platform-center-logo span { color: var(--ac-sky); }
+
+    .visibility-bar {
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: rgba(43,158,111,0.12);
+      border: 1px solid rgba(43,158,111,0.25);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .visibility-bar svg {
+      flex-shrink: 0;
+    }
+
+    .visibility-text {
+      font-size: 0.8rem;
+      color: var(--ac-success);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* ─── HOW IT WORKS (DARK) ─── */
+    .how-section {
+      background: var(--ac-navy);
+      color: var(--ac-white);
+    }
+
+    .how-section .section-tag { color: rgba(255,255,255,0.4); }
+    .how-section h2 { color: var(--ac-white); }
+    .how-section .section-intro { color: rgba(255,255,255,0.55); }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .step-cell {
+      background: var(--ac-navy);
+      padding: 48px 40px;
+      position: relative;
+    }
+
+    .step-cell::after {
+      content: '\2192';
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.2);
+      font-size: 1.4rem;
+      z-index: 2;
+    }
+    .step-cell:last-child::after { display: none; }
+
+    .step-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 3rem;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .step-icon {
+      width: 40px; height: 40px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+    }
+
+    .step-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ac-sky);
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.4rem;
+      color: var(--ac-white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .step-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    /* ─── KEY CAPABILITIES ─── */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ac-border);
+      border: 1px solid var(--ac-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .cap-cell {
+      background: var(--ac-white);
+      padding: 44px 36px;
+    }
+
+    .cap-icon {
+      width: 40px; height: 40px;
+      border: 1px solid var(--ac-border);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 1.1rem;
+    }
+
+    .cap-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: var(--ac-navy);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .cap-body {
+      font-size: 0.88rem;
+      color: var(--ac-mid);
+      line-height: 1.75;
+    }
+
+    .cap-tag {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 4px 12px;
+      background: var(--ac-mist);
+      color: var(--ac-teal);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ─── IMPACT / ROI ─── */
+    .impact-section {
+      background: var(--ac-mist);
+    }
+
+    .impact-table {
+      border: 1px solid var(--ac-border);
+      background: var(--ac-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .impact-table-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--ac-border);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ac-mid);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .impact-row {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--ac-border);
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+      transition: background 0.15s;
+    }
+    .impact-row:last-child { border-bottom: none; }
+    .impact-row:hover { background: var(--ac-light); }
+
+    .impact-row-label {
+      font-size: 0.9rem;
+      color: var(--ac-navy);
+      font-weight: 400;
+    }
+
+    .impact-row-val {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ac-navy);
+    }
+
+    .impact-row-saved {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ac-teal);
+    }
+
+    .impact-row-value {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ac-success);
+    }
+
+    .impact-row-total {
+      background: var(--ac-navy);
+      border-radius: 0 0 var(--radius-md) var(--radius-md);
+    }
+    .impact-row-total:hover { background: var(--ac-navy); }
+    .impact-row-total .impact-row-label { color: rgba(255,255,255,0.7); font-weight: 500; }
+    .impact-row-total .impact-row-val { color: var(--ac-white); }
+    .impact-row-total .impact-row-saved { color: var(--ac-sky); }
+    .impact-row-total .impact-row-value { color: var(--ac-success); }
+
+    .impact-note {
+      margin-top: 40px;
+      padding: 32px;
+      border: 1px solid var(--ac-border);
+      background: var(--ac-white);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .impact-note-text {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.3rem;
+      line-height: 1.5;
+      color: var(--ac-navy);
+    }
+    .impact-note-text em {
+      font-style: italic;
+      color: var(--ac-teal);
+    }
+
+    .impact-note-sub {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: var(--ac-mid);
+      line-height: 1.6;
+    }
+
+    /* ─── WHY NOW (DARK) ─── */
+    .why-section {
+      background: var(--ac-navy);
+      color: var(--ac-white);
+    }
+
+    .why-section .section-tag { color: rgba(255,255,255,0.4); }
+    .why-section h2 { color: var(--ac-white); }
+    .why-section .section-intro { color: rgba(255,255,255,0.55); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .why-cell {
+      background: var(--ac-navy);
+      padding: 48px 40px;
+    }
+
+    .why-num {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 3rem;
+      color: rgba(255,255,255,0.08);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .why-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: 1.3rem;
+      color: var(--ac-white);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+
+    .why-desc {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    .why-tag {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 4px 12px;
+      background: rgba(75,184,197,0.12);
+      color: var(--ac-sky);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 48px;
+      border-top: 1px solid var(--ac-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ac-white);
+    }
+
+    .footer-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: var(--ac-navy);
+    }
+    .footer-logo span { color: var(--ac-teal); }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: var(--ac-mid);
+      max-width: 460px;
+      text-align: right;
+      line-height: 1.6;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 0 16px; height: auto; min-height: 56px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+      .nav-inner { flex-wrap: wrap; gap: 8px; }
+      .nav-links { gap: 2px; flex-wrap: wrap; }
+      .nav-link { padding: 4px 8px; font-size: 11px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 24px 40px; border-right: none; border-bottom: 1px solid var(--ac-border); }
+      .hero-right { padding: 48px 24px; }
+      section { padding: 64px 24px; }
+      .section-header { grid-template-columns: 1fr; gap: 20px; }
+      .platform-diagram { grid-template-columns: 1fr; }
+      .platform-center::before, .platform-center::after { display: none; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .step-cell::after { display: none; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .impact-table-header, .impact-row { grid-template-columns: 1fr 1fr; gap: 8px; }
+      .why-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-note { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="2" y="8" width="16" height="10" rx="2" fill="#4BB8C5"/>
+          <path d="M5 8V6C5 3.79 7.24 2 10 2C12.76 2 15 3.79 15 6V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="10" cy="13" r="1.5" fill="white"/>
+        </svg>
+      </div>
+      Apartment<span>Cart</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">The Problem</a>
+      <a href="apartmentcart-solution.html" class="nav-link active">The Solution</a>
+      <a href="apartmentcart-competitors.html" class="nav-link">Competitors</a>
+      <a href="apartmentcart-style-guide.html" class="nav-link">Style Guide</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding: 0;">
+  <div class="hero-left">
+    <div class="eyebrow">The Solution</div>
+    <h1>One platform to connect <em>negotiated pricing</em> to the people who actually buy things.</h1>
+    <p class="hero-body">
+      ApartmentCart digitizes property-level asset catalogs and connects them directly to your vendor-negotiated pricing. When a maintenance tech needs a replacement part, they see exactly what's installed and order at the right price. The savings finally happen.
+    </p>
+  </div>
+  <div class="hero-right">
+    <div class="stat-stack">
+      <div class="stat-item">
+        <div class="stat-num">100<span>%</span></div>
+        <div class="stat-label">Catalog visibility — every unit, every asset, every SKU, searchable and up to date</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span>Real-time</span></div>
+        <div class="stat-label">Pricing compliance — see on-contract vs. off-contract purchasing as it happens</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$20</div>
+        <div class="stat-label">In property value created for every $1 of procurement leakage eliminated (at a 5% cap rate)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section>
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">What It Is</div>
+      <div>
+        <h2>The missing layer between <em>procurement</em> and <em>maintenance.</em></h2>
+        <p class="section-intro">
+          ApartmentCart is a software platform that sits between the people who negotiate pricing and the people who buy things. It gives procurement a way to publish negotiated prices, gives maintenance a way to find and order the right parts, and gives owners real-time visibility into whether the savings are actually landing.
+        </p>
+      </div>
+    </div>
+
+    <div class="platform-diagram reveal">
+      <div class="platform-side">
+        <div class="platform-role">Input</div>
+        <div class="platform-title">Procurement Teams</div>
+        <div class="platform-desc">Negotiate vendor pricing, define material standards, and set approved SKUs for each property. Their work feeds the catalog.</div>
+        <div style="margin-top: 16px;">
+          <svg width="120" height="4" viewBox="0 0 120 4">
+            <rect width="120" height="4" rx="2" fill="var(--ac-mist)"/>
+            <rect width="90" height="4" rx="2" fill="var(--ac-teal)"/>
+          </svg>
+          <div style="font-size: 0.72rem; color: var(--ac-mid); margin-top: 6px;">Contracts negotiated</div>
+        </div>
+      </div>
+
+      <div class="platform-center">
+        <div class="platform-icon">
+          <svg width="24" height="24" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="8" width="16" height="10" rx="2" fill="#4BB8C5"/>
+            <path d="M5 8V6C5 3.79 7.24 2 10 2C12.76 2 15 3.79 15 6V8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="10" cy="13" r="1.5" fill="white"/>
+          </svg>
+        </div>
+        <div class="platform-center-logo">Apartment<span>Cart</span></div>
+        <div class="platform-role">The Catalog</div>
+        <div class="platform-desc" style="margin-top: 8px;">Per-property, per-unit digital asset catalog with negotiated pricing linked to every SKU. The single source of truth for what's installed and what it should cost.</div>
+        <div class="visibility-bar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M8 3C4.5 3 1.5 6 1 8c.5 2 3.5 5 7 5s6.5-3 7-5c-.5-2-3.5-5-7-5z" stroke="#2B9E6F" stroke-width="1.2"/>
+            <circle cx="8" cy="8" r="2" fill="#2B9E6F"/>
+          </svg>
+          <div class="visibility-text">Full visibility flows up to owners and operators in real time</div>
+        </div>
+      </div>
+
+      <div class="platform-side">
+        <div class="platform-role">Output</div>
+        <div class="platform-title">Maintenance Staff</div>
+        <div class="platform-desc">Open ApartmentCart on site. See what's installed at the unit. Order the right part at the pre-negotiated price. No binders, no guessing, no Home Depot.</div>
+        <div style="margin-top: 16px;">
+          <svg width="120" height="4" viewBox="0 0 120 4">
+            <rect width="120" height="4" rx="2" fill="var(--ac-mist)"/>
+            <rect width="40" height="4" rx="2" fill="var(--ac-warn)"/>
+          </svg>
+          <div style="font-size: 0.72rem; color: var(--ac-mid); margin-top: 6px;">Leakage eliminated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">How It Works</div>
+      <div>
+        <h2>Three steps.<br/><em>Zero leakage.</em></h2>
+        <p class="section-intro">
+          ApartmentCart replaces the broken handoff between procurement and maintenance with a digital workflow that ensures every purchase follows the plan.
+        </p>
+      </div>
+    </div>
+
+    <div class="steps-grid reveal">
+      <div class="step-cell">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="2" width="14" height="16" rx="2" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+            <line x1="6" y1="6" x2="14" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <line x1="6" y1="9" x2="14" y2="9" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <line x1="6" y1="12" x2="11" y2="12" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="step-label">Step 1</div>
+        <div class="step-title">Build your catalog</div>
+        <div class="step-desc">Procurement teams digitize property plan sets and create per-unit asset catalogs. Link negotiated vendor pricing to specific SKUs. Every property gets a living, searchable catalog of what's installed.</div>
+      </div>
+
+      <div class="step-cell">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="4" y="1" width="12" height="18" rx="2" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"/>
+            <line x1="7" y1="4" x2="13" y2="4" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+            <circle cx="10" cy="16" r="1" fill="rgba(255,255,255,0.5)"/>
+            <rect x="6" y="7" width="8" height="6" rx="1" stroke="rgba(255,255,255,0.3)" stroke-width="0.8"/>
+          </svg>
+        </div>
+        <div class="step-label">Step 2</div>
+        <div class="step-title">Equip the field</div>
+        <div class="step-desc">When a maintenance tech gets a work order, they open ApartmentCart, see exactly what's installed at that unit — faucet model, flooring SKU, appliance type — and order the right part at the pre-negotiated price. No binders. No guessing. No Home Depot runs.</div>
+      </div>
+
+      <div class="step-cell">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <polyline points="3,14 7,8 11,11 17,4" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="13,4 17,4 17,8" stroke="rgba(255,255,255,0.6)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="step-label">Step 3</div>
+        <div class="step-title">See the savings</div>
+        <div class="step-desc">Owners and operators get real-time visibility into procurement compliance. See what's being bought, whether it's on-contract, and how much is being saved vs. leaked. The P&amp;L finally tells the truth.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY CAPABILITIES -->
+<section>
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Key Capabilities</div>
+      <div>
+        <h2>Built for the way <em>multifamily</em> actually works.</h2>
+        <p class="section-intro">
+          ApartmentCart is purpose-built for apartment operators — not retrofitted from a general procurement system. Every feature exists to close the gap between negotiated pricing and field purchasing.
+        </p>
+      </div>
+    </div>
+
+    <div class="cap-grid reveal">
+      <div class="cap-cell">
+        <div class="cap-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <rect x="11" y="11" width="7" height="7" rx="1.5" stroke="var(--ac-teal)" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="cap-title">Per-Property Asset Catalogs</div>
+        <div class="cap-body">Digitize paper plan sets into searchable, unit-level catalogs. Know exactly what's installed at every unit across your portfolio. The foundation everything else builds on.</div>
+        <div class="cap-tag">Core</div>
+      </div>
+
+      <div class="cap-cell">
+        <div class="cap-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="7" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <path d="M7 10l2 2 4-4" stroke="var(--ac-teal)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cap-title">Negotiated Price Linking</div>
+        <div class="cap-body">Attach your vendor-negotiated pricing directly to catalog SKUs. When staff order, they automatically get the right price. No spreadsheets, no lookups, no leakage.</div>
+        <div class="cap-tag">Pricing</div>
+      </div>
+
+      <div class="cap-cell">
+        <div class="cap-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="5" y="1" width="10" height="18" rx="2" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <line x1="8" y1="4" x2="12" y2="4" stroke="var(--ac-teal)" stroke-width="0.8"/>
+            <circle cx="10" cy="16" r="1" fill="var(--ac-teal)"/>
+          </svg>
+        </div>
+        <div class="cap-title">Mobile-First for Maintenance</div>
+        <div class="cap-body">Built for the people who actually buy things. Simple, fast, mobile interface that works on a job site — not a back-office ERP designed for people who sit at desks.</div>
+        <div class="cap-tag">Field</div>
+      </div>
+
+      <div class="cap-cell">
+        <div class="cap-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="4" width="16" height="12" rx="2" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <polyline points="5,12 8,8 11,10 15,6" stroke="var(--ac-teal)" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="cap-title">Savings Compliance Dashboard</div>
+        <div class="cap-body">Real-time visibility into on-contract vs. off-contract purchasing. See exactly where procurement leakage is happening, by property, by category, by vendor.</div>
+        <div class="cap-tag">Visibility</div>
+      </div>
+
+      <div class="cap-cell">
+        <div class="cap-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 2v6M10 12v6M2 10h6M12 10h6" stroke="var(--ac-teal)" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="10" cy="10" r="3" stroke="var(--ac-teal)" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="cap-title">Portfolio-Wide Standardization</div>
+        <div class="cap-body">Set material standards across properties. When you switch to a new faucet line, update once — every property sees the change. Consistency at scale without the overhead.</div>
+        <div class="cap-tag">Standards</div>
+      </div>
+
+      <div class="cap-cell">
+        <div class="cap-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <rect x="2" y="5" width="6" height="10" rx="1.5" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <rect x="12" y="5" width="6" height="10" rx="1.5" stroke="var(--ac-teal)" stroke-width="1.2"/>
+            <line x1="8" y1="8" x2="12" y2="8" stroke="var(--ac-teal)" stroke-width="1"/>
+            <line x1="8" y1="12" x2="12" y2="12" stroke="var(--ac-teal)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="cap-title">PMS Integration Layer</div>
+        <div class="cap-body">Works alongside Yardi, RealPage, and AppFolio — not against them. ApartmentCart fills the gap your PMS was never designed to cover. No rip-and-replace required.</div>
+        <div class="cap-tag">Integrations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE IMPACT -->
+<section class="impact-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">The Impact</div>
+      <div>
+        <h2>Savings that <em>compound</em> into value.</h2>
+        <p class="section-intro">
+          Procurement leakage isn't just an expense problem — it's a valuation problem. Every dollar of recurring savings eliminated flows directly to NOI, and at a 5% cap rate, that's a 20x multiplier on property value.
+        </p>
+      </div>
+    </div>
+
+    <div class="impact-table reveal">
+      <div class="impact-table-header">
+        <div>Portfolio Size</div>
+        <div>Materials Spend</div>
+        <div>Leakage Saved</div>
+        <div>Property Value Created</div>
+      </div>
+      <div class="impact-row">
+        <div class="impact-row-label">Small operator (200 units)</div>
+        <div class="impact-row-val">$100K</div>
+        <div class="impact-row-saved">$12K</div>
+        <div class="impact-row-value">$240K</div>
+      </div>
+      <div class="impact-row">
+        <div class="impact-row-label">Regional operator (1,000 units)</div>
+        <div class="impact-row-val">$500K</div>
+        <div class="impact-row-saved">$60K</div>
+        <div class="impact-row-value">$1.2M</div>
+      </div>
+      <div class="impact-row">
+        <div class="impact-row-label">Mid-size REIT (10,000 units)</div>
+        <div class="impact-row-val">$5M</div>
+        <div class="impact-row-saved">$600K</div>
+        <div class="impact-row-value">$12M</div>
+      </div>
+      <div class="impact-row impact-row-total">
+        <div class="impact-row-label">Large portfolio (50,000 units)</div>
+        <div class="impact-row-val">$25M</div>
+        <div class="impact-row-saved">$3M</div>
+        <div class="impact-row-value">$60M</div>
+      </div>
+    </div>
+
+    <div class="impact-note reveal">
+      <div class="impact-note-text">Every dollar of procurement leakage you eliminate flows directly to NOI — and at a 5% cap rate, that's a <em>20x multiplier</em> on property value.</div>
+      <div class="impact-note-sub">Based on ~$500/unit/year materials spend, 12% average leakage rate, and standard 5% capitalization rate for multifamily assets.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOW -->
+<section class="why-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-tag">Why Now</div>
+      <div>
+        <h2>The window is <em>wide open.</em></h2>
+        <p class="section-intro">
+          Three forces are converging to make this the right moment to build ApartmentCart — and every quarter that passes makes the opportunity more urgent.
+        </p>
+      </div>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-cell">
+        <div class="why-num">01</div>
+        <div class="why-title">Maintenance costs are rising</div>
+        <div class="why-desc">R&amp;M costs are up 13.7% year-over-year per NAA data. Operators are under more pressure than ever to control expenses — and procurement leakage is the lowest-hanging fruit most don't even know they're missing.</div>
+        <div class="why-tag">Market Pressure</div>
+      </div>
+
+      <div class="why-cell">
+        <div class="why-num">02</div>
+        <div class="why-title">Nobody owns this layer</div>
+        <div class="why-desc">No competitor connects per-property asset catalogs to negotiated pricing for maintenance staff. Yardi does P2P. GPOs do bulk pricing. Nobody does both, at the property level. The whitespace is 100% open.</div>
+        <div class="why-tag">Zero Competition</div>
+      </div>
+
+      <div class="why-cell">
+        <div class="why-num">03</div>
+        <div class="why-title">The data compounds</div>
+        <div class="why-desc">Every property onboarded enriches the catalog. Every transaction proves the ROI. Every integration deepens the workflow stickiness. ApartmentCart's moat gets wider with every customer — a classic data network effect.</div>
+        <div class="why-tag">Defensibility</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Apartment<span>Cart</span></div>
+  <div class="footer-note">pitch.apartmentcart.com &middot; ApartmentCart, Inc. &middot; 2026</div>
+</footer>
+
+<!-- SCROLL REVEAL -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  });
+</script>
+
+</body>
+</html>

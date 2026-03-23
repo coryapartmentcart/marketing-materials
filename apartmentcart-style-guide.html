@@ -255,7 +255,10 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
-      .top-nav { padding: 0 20px; }
+      .top-nav { padding: 0 16px; height: auto; min-height: 56px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+      .top-nav-inner { flex-wrap: wrap; gap: 8px; }
+      .top-nav-links { gap: 2px; flex-wrap: wrap; }
+      .top-nav-link { padding: 4px 8px; font-size: 11px; }
       .sidebar { display: none; }
       .main { margin-left: 0; padding: 2rem 1.5rem; padding-top: calc(56px + 2rem); }
       .logo-grid, .rules-grid { grid-template-columns: 1fr; }
@@ -289,6 +292,7 @@
       </a>
       <div class="top-nav-links">
         <a href="index.html" class="top-nav-link">The Problem</a>
+        <a href="apartmentcart-solution.html" class="top-nav-link">The Solution</a>
         <a href="apartmentcart-competitors.html" class="top-nav-link">Competitors</a>
         <a href="apartmentcart-style-guide.html" class="top-nav-link active">Style Guide</a>
       </div>

@@ -534,7 +534,10 @@
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 960px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 16px; height: auto; min-height: 56px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+      .nav-inner { flex-wrap: wrap; gap: 8px; }
+      .nav-links { gap: 2px; flex-wrap: wrap; }
+      .nav-link { padding: 4px 8px; font-size: 11px; }
       .hero { padding: 120px 20px 60px; }
       .section { padding: 48px 20px; }
       .overview-grid { grid-template-columns: 1fr 1fr; }
@@ -565,6 +568,7 @@
     </a>
     <div class="nav-links">
       <a href="index.html" class="nav-link">The Problem</a>
+      <a href="apartmentcart-solution.html" class="nav-link">The Solution</a>
       <a href="apartmentcart-competitors.html" class="nav-link active">Competitors</a>
       <a href="apartmentcart-style-guide.html" class="nav-link">Style Guide</a>
     </div>
